@@ -1,0 +1,23 @@
+docker build -t account-service:0.1 .
+
+docker build -t customer-service:0.1 .
+
+docker build -t eureka:0.1 .
+
+docker build -t gateway:0.1 .
+
+docker run -it -d -p 8091:8091 account-service:0.1
+
+docker run -it -d -p 8092:8092 customer-service:0.1
+
+docker run -it -d -p 8090:8090 eureka:0.1
+
+docker run -it -d -p 8080:8080 gateway:0.1
+
+
+
+docker-compose build
+
+docker-compose up -d
+
+docker-compose down

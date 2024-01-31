@@ -1,0 +1,43 @@
+# docker-compose version
+version: '3'
+services:
+# services names e.g. frontend, db, backend
+  eureka:
+    image: eureka:0.1
+    # build location
+    build: ./eureka/
+    container_name: eureka
+    # port mapping host/guest
+    ports:
+      - "8090:8090"
+  account-service:
+    image: account-service:0.1
+    # build location
+    build: ./account/
+    container_name: account
+    # port mapping host/guest
+    ports:
+      - "8091:8091"
+    depends_on:
+      - eureka
+  customer-service:
+    image: customer-service:0.1
+    # build location
+    build: ./customer/
+    container_name: customer
+    # port mapping host/guest
+    ports:
+      - "8092:8092"
+    depends_on:
+      - eureka
+  gateway:
+    image: gateway:0.1
+    # build location
+    build: ./gateway/
+    container_name: gateway
+    # port mapping host/guest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka
+        
