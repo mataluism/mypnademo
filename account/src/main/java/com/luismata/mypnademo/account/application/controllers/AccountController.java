@@ -18,7 +18,7 @@ public class AccountController {
 
     @GetMapping("/check-app")
     public String checkApp() {
-        return "Hello from check-app";
+        return "Hello from account check-app";
     }
 
     @PostMapping("/create-new-account")

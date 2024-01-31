@@ -22,8 +22,8 @@
 
     <modules>
         <module>eureka</module>
-        <module>account-service</module>
-        <module>customer-service</module>
+        <module>account</module>
+        <module>customer</module>
         <module>gateway</module>
     </modules>
 

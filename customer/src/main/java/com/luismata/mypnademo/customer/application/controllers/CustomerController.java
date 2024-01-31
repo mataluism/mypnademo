@@ -29,7 +29,7 @@ public class CustomerController {
 
     @GetMapping("/check-app")
     public String checkApp() {
-        return "Hello from check-app";
+        return "Hello from customer check-app";
     }
 
     @PostMapping("/create-new-customer")
