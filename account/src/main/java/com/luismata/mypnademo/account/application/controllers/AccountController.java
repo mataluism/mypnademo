@@ -1,5 +1,6 @@
 package com.luismata.mypnademo.account.application.controllers;
 
+import com.luismata.mypnademo.account.core.exceptions.ProvidedCustomerIdNotFoundException;
 import com.luismata.mypnademo.account.core.model.Account;
 import com.luismata.mypnademo.account.core.ports.incoming.CreateNewAccount;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,12 @@ public class AccountController {
     @PostMapping("/create-new-account")
     public int createNewAccount(@RequestParam int customerId) {
         Account account = null;
-//        try {
+        try {
             account = createNewAccount.createNewAccount(customerId);
-//        } catch (ProvidedCustomerIdNotFoundException exc) {
-//            throw new ResponseStatusException(
-//                    HttpStatus.NOT_FOUND, exc.getMessage(), exc);
-//        }
+        } catch (ProvidedCustomerIdNotFoundException exc) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, exc.getMessage(), exc);
+        }
         return account.getAccountId();
     }
 }

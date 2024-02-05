@@ -1,4 +1,4 @@
-package com.luismata.mypnademo.customer.core.model;
+package com.luismata.mypnademo.customer.application.dto;
 
 public record CustomerDTO(int customerId, String customerName) {
     public static final class CustomerDTOBuilder {

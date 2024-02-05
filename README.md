@@ -8,6 +8,9 @@ the typical simple banking app problem (account withdrawal, deposit, etc.)
 - H2
 - springdoc-openapi 2.3.0
 - JUnit 5.10.1
+- Docker
+- Docker-compose
+- Kubernetes
 
 
 Considered use cases (WIP):

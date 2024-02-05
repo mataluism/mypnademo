@@ -5,7 +5,8 @@ import com.luismata.mypnademo.customer.core.ports.incoming.CreateNewCustomer;
 import com.luismata.mypnademo.customer.core.ports.incoming.GetCustomerById;
 import com.luismata.mypnademo.customer.core.ports.outgoing.CustomerRepository;
 import com.luismata.mypnademo.customer.core.exceptions.InvalidNameProvidedException;
-import com.luismata.mypnademo.customer.core.exceptions.ProvidedCustomerIdNotFoundException;
+import com.luismata.mypnademo.customer.core.exceptions.CustomerIdNotFoundException;
+import org.springframework.jms.annotation.JmsListener;
 
 import java.util.Optional;
 
@@ -40,7 +41,14 @@ public class CustomerService implements CreateNewCustomer, GetCustomerById {
         if(customerById.isPresent()) {
             return customerById.get();
         } else {
-            throw new ProvidedCustomerIdNotFoundException("Customer with ID: " + customerIdToGet + " not found.");
+            throw new CustomerIdNotFoundException("Customer with ID: " + customerIdToGet + " not found.");
         }
+    }
+
+
+    @JmsListener(destination = "${activemq.destination}")
+    public void receiveMessage(String customerIdMessage) {
+        // TODO LM: finish this
+        System.out.println("Received message: " + customerIdMessage);
     }
 }

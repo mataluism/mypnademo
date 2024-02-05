@@ -1,4 +1,4 @@
-package com.luismata.mypnademo.customer.core.exceptions;
+package com.luismata.mypnademo.account.core.exceptions;
 
 public class ProvidedCustomerIdNotFoundException extends IllegalArgumentException {
     public ProvidedCustomerIdNotFoundException(String message) {

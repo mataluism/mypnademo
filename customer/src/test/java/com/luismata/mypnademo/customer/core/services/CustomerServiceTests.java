@@ -1,7 +1,7 @@
 package com.luismata.mypnademo.customer.core.services;
 
 import com.luismata.mypnademo.customer.core.exceptions.InvalidNameProvidedException;
-import com.luismata.mypnademo.customer.core.exceptions.ProvidedCustomerIdNotFoundException;
+import com.luismata.mypnademo.customer.core.exceptions.CustomerIdNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -66,7 +66,7 @@ public class CustomerServiceTests {
         // given
 
         //when
-        var exception = assertThrows(ProvidedCustomerIdNotFoundException.class, () -> customerService.getCustomerById(customerIdToGet));
+        var exception = assertThrows(CustomerIdNotFoundException.class, () -> customerService.getCustomerById(customerIdToGet));
 
         //then
         assertEquals("Customer with ID: " + customerIdToGet + " not found.", exception.getMessage());

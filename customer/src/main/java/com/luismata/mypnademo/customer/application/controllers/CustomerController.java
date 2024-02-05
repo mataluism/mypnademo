@@ -1,11 +1,11 @@
 package com.luismata.mypnademo.customer.application.controllers;
 
 import com.luismata.mypnademo.customer.core.model.Customer;
-import com.luismata.mypnademo.customer.core.model.CustomerDTO;
+import com.luismata.mypnademo.customer.application.dto.CustomerDTO;
 import com.luismata.mypnademo.customer.core.ports.incoming.CreateNewCustomer;
 import com.luismata.mypnademo.customer.core.ports.incoming.GetCustomerById;
 import com.luismata.mypnademo.customer.core.exceptions.InvalidNameProvidedException;
-import com.luismata.mypnademo.customer.core.exceptions.ProvidedCustomerIdNotFoundException;
+import com.luismata.mypnademo.customer.core.exceptions.CustomerIdNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +50,7 @@ public class CustomerController {
         Customer customerById;
         try {
             customerById = getCustomerById.getCustomerById(customerIdToGet);
-        } catch (ProvidedCustomerIdNotFoundException providedCustomerIdNotFoundException) {
+        } catch (CustomerIdNotFoundException providedCustomerIdNotFoundException) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, providedCustomerIdNotFoundException.getMessage());
         }
 
