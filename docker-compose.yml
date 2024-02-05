@@ -3,14 +3,14 @@ version: '3.8'
 services:
   eureka:    
     build: ./eureka/
-    image: eureka:0.1
+    image: localhost:5000/eureka:0.1
     container_name: eureka
     # port mapping host/guest
     ports:
       - "8090:8090"
   account-service:
     build: ./account/
-    image: account-service:0.1
+    image: localhost:5000/account-service:0.1
     container_name: account
     # port mapping host/guest
     ports:
@@ -19,20 +19,20 @@ services:
       - eureka
   customer-service:
     build: ./customer/
-    image: customer-service:0.1
+    image: localhost:5000/customer-service:0.1
     container_name: customer
     # port mapping host/guest
     ports:
       - "8092:8092"
     depends_on:
       - eureka
-  gateway:
-    build: ./gateway/
-    image: gateway:0.1
-    container_name: gateway
-    # port mapping host/guest
-    ports:
-      - "8080:8080"
-    depends_on:
-      - eureka
+#  gateway:
+#    build: ./gateway/
+#    image: localhost:5000/gateway:0.1
+#    container_name: gateway
+#    # port mapping host/guest
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - eureka
         

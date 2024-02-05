@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eureka-deployment
+  labels:
+    app: eureka
+spec:
+  replicas: 1 # Number of replicas that will be created for this deployment
+  selector:
+    matchLabels:
+      app: eureka
+  template:
+    metadata:
+      labels:
+        app: eureka
+    spec:
+      containers:
+      - name: eureka
+        image: localhost:5000/eureka:0.1 # Image that will be used inside the container in the cluster
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8090 # The port that the container is running on in the cluster
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka-service
+spec:
+  type: LoadBalancer # type of the service
+  selector:
+    app: eureka-service
+  ports:
+  - protocol: TCP
+    port: 8090 # The port that the service is running on in the cluster
+    targetPort: 8090 # The port exposed by the service
